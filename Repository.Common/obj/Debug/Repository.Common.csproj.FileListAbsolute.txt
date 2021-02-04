@@ -1,0 +1,8 @@
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\bin\Debug\Repository.Common.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\bin\Debug\Repository.Common.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\obj\Debug\Repository.Common.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\obj\Debug\Repository.Common.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\bin\Debug\Model.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\bin\Debug\Model.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\obj\Debug\Repository.Common.csprojAssemblyReference.cache
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Repository.Common\obj\Debug\Repository.Common.csproj.CopyComplete

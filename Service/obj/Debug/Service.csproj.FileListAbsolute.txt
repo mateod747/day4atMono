@@ -1,0 +1,14 @@
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\obj\Debug\Service.csprojAssemblyReference.cache
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Service.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Service.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\obj\Debug\Service.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\obj\Debug\Service.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Model.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Repository.Common.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Repository.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Service.Common.dll
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Model.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Repository.Common.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Repository.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\bin\Debug\Service.Common.pdb
+C:\Users\mateodubinjak\Desktop\mono_praksa\day2atMono\day2\Service\obj\Debug\Service.csproj.CopyComplete
