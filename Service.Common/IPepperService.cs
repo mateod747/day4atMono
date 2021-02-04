@@ -9,9 +9,9 @@ namespace Service.Common
 {
     public interface IPepperService
     {
-        int SavePepperOrShop(int id, string name, int pepperOrShop);
+        string SavePepperOrShop(PepperModel model, int pepperOrShop);
         PepperModel GetPepperOrShopDomainModel(int id, int pepperOrShop);
-        int UpdatePepperOrShop(int id, int pepperOrShop, string newName);
+        int UpdatePepperOrShop(PepperModel model, int pepperOrShop);
         int DeletePepperOrShop(int id, int pepperOrShop);
     }
 }

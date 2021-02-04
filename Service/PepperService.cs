@@ -18,9 +18,9 @@ namespace Service
             Repository = new PepperRepository();
         }
 
-        public int SavePepperOrShop(int id, string name, int pepperOrShop)
+        public string SavePepperOrShop(PepperModel model, int pepperOrShop)
         {
-            return Repository.SavePepperOrShop(id, name, pepperOrShop);
+            return Repository.SavePepperOrShop(model, pepperOrShop);
         }
 
         public PepperModel GetPepperOrShopDomainModel(int id, int pepperOrShop)
@@ -28,9 +28,9 @@ namespace Service
             return Repository.ShowPepperOrShop(id, pepperOrShop);
         }
 
-        public int UpdatePepperOrShop(int id, int pepperOrShop, string newName)
+        public int UpdatePepperOrShop(PepperModel model, int pepperOrShop)
         {
-            return Repository.UpdatePepperOrShop(id, pepperOrShop, newName);
+            return Repository.UpdatePepperOrShop(model, pepperOrShop);
         }
 
         public int DeletePepperOrShop(int id, int pepperOrShop)

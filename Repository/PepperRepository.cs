@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using Repository.Common;
+using System.Data;
 
 namespace Repository
 {
@@ -44,8 +45,37 @@ namespace Repository
             }
         }
 
-        public int SavePepperOrShop(int id, string name, int pepperOrShop)
+        public string SavePepperOrShop(PepperModel model, int pepperOrShop)
         {
+            //SqlCommand insert;
+
+            //if (pepperOrShop == 0)
+            //{
+            //    insert = new SqlCommand("insert into Peppers values(@id, @name);", conn);
+            //}
+            //else
+            //{
+            //    insert = new SqlCommand("insert into PepperShops values(@id, @name);", conn);
+            //}
+
+            //insert.Parameters.AddWithValue("@id", model.ID);
+            //insert.Parameters.AddWithValue("@name", model.Name);
+
+            //conn.Open();
+
+            //try
+            //{
+            //    insert.ExecuteNonQuery();
+            //    conn.Close();
+            //    return 200;
+            //}
+            //catch (Exception)
+            //{
+            //    conn.Close();
+            //    return 200;
+            //}
+
+
             SqlCommand insert;
 
             if (pepperOrShop == 0)
@@ -57,21 +87,25 @@ namespace Repository
                 insert = new SqlCommand("insert into PepperShops values(@id, @name);", conn);
             }
 
-            insert.Parameters.AddWithValue("@id", id);
-            insert.Parameters.AddWithValue("@name", name);
+            insert.Parameters.AddWithValue("@id", model.ID);
+            insert.Parameters.AddWithValue("@name", model.Name);
 
             conn.Open();
 
             try
             {
-                insert.ExecuteNonQuery();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.InsertCommand = insert;
+                dataAdapter.InsertCommand.ExecuteNonQuery();
+                                       
                 conn.Close();
-                return 200;
+
+                return "Ok";
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 conn.Close();
-                return 200;
+                return e.ToString();
             }
         }
 
@@ -119,7 +153,7 @@ namespace Repository
             }
         }
 
-        public int UpdatePepperOrShop(int id, int pepperOrShop, string newName)
+        public int UpdatePepperOrShop(PepperModel model, int pepperOrShop)
         {
             SqlCommand update;
 
@@ -132,8 +166,8 @@ namespace Repository
                 update = new SqlCommand("update PepperShops set ShopName = @name where ShopID = @id;", conn);
             }
 
-            update.Parameters.AddWithValue("@id", id);
-            update.Parameters.AddWithValue("@name", newName);
+            update.Parameters.AddWithValue("@id", model.ID);
+            update.Parameters.AddWithValue("@name", model.Name);
 
             conn.Open();
 

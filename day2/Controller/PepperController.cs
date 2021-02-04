@@ -19,16 +19,16 @@ namespace day2.Controller
         protected IPepperService service = new PepperService();
                 
         [HttpPost]
-        public HttpResponseMessage SavePepperOrShop(int id, string name, int pepperOrShop)
+        public HttpResponseMessage SavePepperOrShop(PepperModel model, int pepperOrShop)
         {
-            int response = service.SavePepperOrShop(id, name, pepperOrShop);
+            string response = service.SavePepperOrShop(model, pepperOrShop);
             
-            if(response == 200)
+            if(response == "Ok")
             {
                 return Request.CreateResponse(HttpStatusCode.OK, "Successfully updated database.");
             } else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Unsuccessful!");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, response);
             }
         }
                 
@@ -52,9 +52,9 @@ namespace day2.Controller
 
         [Route("update/{id}/{name}")]
         [HttpPut]
-        public HttpResponseMessage UpdatePepperOrShop(int id, int pepperOrShop, string newName)
+        public HttpResponseMessage UpdatePepperOrShop(PepperModel model, int pepperOrShop)
         {
-            int response = service.UpdatePepperOrShop(id, pepperOrShop, newName);
+            int response = service.UpdatePepperOrShop(model, pepperOrShop);
 
             if (response == 200)
             {
