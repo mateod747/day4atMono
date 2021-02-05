@@ -11,6 +11,7 @@ using Service.Common;
 using Service;
 using Model;
 using ViewModel;
+using System.Threading.Tasks;
 
 namespace day2.Controller
 {
@@ -34,15 +35,20 @@ namespace day2.Controller
                 
         [Route("show/{id}")]
         [HttpGet]
-        public HttpResponseMessage ShowPepperOrShop(int id, int pepperOrShop)
+        public async Task<HttpResponseMessage> GetAllPeppersOrShopsAsync(int pepperOrShop)
         {
-            PepperModel response = service.GetPepperOrShopDomainModel(id, pepperOrShop);
-            PepperViewModel viewModel = new PepperViewModel();
-            viewModel.Name = response.Name;
-
-            if (viewModel.Name != null)
+            List<PepperViewModel> viewModel = new List<PepperViewModel>();
+                     
+            List<PepperModel> response = await service.GetPepperOrShopDomainModelAsync(pepperOrShop);
+            
+            foreach(PepperModel model in response)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, viewModel.Name);
+                viewModel.Add(new PepperViewModel() { Name = model.Name });
+            }
+                       
+            if (viewModel != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, viewModel);
             }
             else
             {

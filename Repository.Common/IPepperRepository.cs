@@ -11,7 +11,7 @@ namespace Repository.Common
     public interface IPepperRepository
     {
         string SavePepperOrShop(PepperModel model, int pepperOrShop);
-        PepperModel ShowPepperOrShop(int id, int pepperOrShop);
+        Task<List<PepperModel>> ShowPepperOrShopAsync(int pepperOrShop);
         int UpdatePepperOrShop(PepperModel model, int pepperOrShop);
         int DeletePepperOrShop(int id, int pepperOrShop);
     }

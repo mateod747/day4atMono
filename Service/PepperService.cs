@@ -23,9 +23,9 @@ namespace Service
             return Repository.SavePepperOrShop(model, pepperOrShop);
         }
 
-        public PepperModel GetPepperOrShopDomainModel(int id, int pepperOrShop)
+        public async Task<List<PepperModel>> GetPepperOrShopDomainModelAsync(int pepperOrShop)
         {
-            return Repository.ShowPepperOrShop(id, pepperOrShop);
+            return await Repository.ShowPepperOrShopAsync(pepperOrShop);
         }
 
         public int UpdatePepperOrShop(PepperModel model, int pepperOrShop)

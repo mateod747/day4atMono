@@ -109,42 +109,46 @@ namespace Repository
             }
         }
 
-        public PepperModel ShowPepperOrShop(int id, int pepperOrShop)
+        public async Task<List<PepperModel>> ShowPepperOrShopAsync(int pepperOrShop)
         {
             SqlCommand show;
+            List<PepperModel> peppers = new List<PepperModel>();
+            
             if (pepperOrShop == 0)
             {
-                show = new SqlCommand("select * from Peppers where PepperID=@id;", conn);
+                show = new SqlCommand("select * from Peppers;", conn);
             }
             else
             {
-                show = new SqlCommand("select * from PepperShops where ShopID=@id;", conn);
+                show = new SqlCommand("select * from PepperShops", conn);
             }
 
-            show.Parameters.AddWithValue("@id", id);
             conn.Open();
-            SqlDataReader reader = show.ExecuteReader();
+            SqlDataReader reader = await show.ExecuteReaderAsync();
 
             try
             {
                 string name = "";
-
+                int id;
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
+                    while (await reader.ReadAsync())
                     {
+                        id = reader.GetInt32(0);
                         name = reader.GetString(1);
+
+                        PepperModel pepper = new PepperModel();
+
+                        pepper.ID = id;
+                        pepper.Name = name;
+
+                        peppers.Add(pepper);
                     }
                 }
-
-                PepperModel pepper = new PepperModel();
-
-                pepper.ID = id;
-                pepper.Name = name;
-
+                               
                 reader.Close();
                 conn.Close();
-                return pepper;
+                return peppers;
             }
             catch (Exception)
             {
