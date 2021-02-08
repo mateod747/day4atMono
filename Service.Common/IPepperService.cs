@@ -9,9 +9,9 @@ namespace Service.Common
 {
     public interface IPepperService
     {
-        string SavePepperOrShop(PepperModel model, int pepperOrShop);
-        Task<List<PepperModel>> GetPepperOrShopDomainModelAsync(int pepperOrShop);
-        int UpdatePepperOrShop(PepperModel model, int pepperOrShop);
-        int DeletePepperOrShop(int id, int pepperOrShop);
+        Task<string> SavePepperAsync(PepperModel model);
+        Task<List<PepperModel>> GetAllPeppersAsync();
+        Task<int> UpdatePepperAsync(PepperModel model);
+        Task<int> DeletePepperAsync(int id);
     }
 }

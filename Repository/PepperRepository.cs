@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Web.Http;
-using System.Net.Http;
 using System.Configuration;
-using System.Text;
 using System.Threading.Tasks;
 using Model;
 using Repository.Common;
@@ -18,23 +13,16 @@ namespace Repository
     {
         static string con = ConfigurationManager.ConnectionStrings["sqlServer"].ConnectionString;
         static SqlConnection conn = new SqlConnection(con);
-        public int DeletePepperOrShop(int id, int pepperOrShop)
+        public async Task<int> DeletePepperAsync(int id)
         {
-            SqlCommand delete;
-            if (pepperOrShop == 0)
-            {
-                delete = new SqlCommand("delete from Peppers where PepperID=@id;", conn);
-            }
-            else
-            {
-                delete = new SqlCommand("delete from Peppers where ShopID=@id;", conn);
-            }
+            SqlCommand delete = new SqlCommand("delete from Peppers where PepperID=@id;", conn);
+
             delete.Parameters.AddWithValue("@id", id);
             conn.Open();
 
             try
             {
-                delete.ExecuteNonQuery();
+                await delete.ExecuteNonQueryAsync();
                 conn.Close();
                 return 200;
             }
@@ -45,47 +33,9 @@ namespace Repository
             }
         }
 
-        public string SavePepperOrShop(PepperModel model, int pepperOrShop)
+        public async Task<string> SavePepperAsync(PepperModel model)
         {
-            //SqlCommand insert;
-
-            //if (pepperOrShop == 0)
-            //{
-            //    insert = new SqlCommand("insert into Peppers values(@id, @name);", conn);
-            //}
-            //else
-            //{
-            //    insert = new SqlCommand("insert into PepperShops values(@id, @name);", conn);
-            //}
-
-            //insert.Parameters.AddWithValue("@id", model.ID);
-            //insert.Parameters.AddWithValue("@name", model.Name);
-
-            //conn.Open();
-
-            //try
-            //{
-            //    insert.ExecuteNonQuery();
-            //    conn.Close();
-            //    return 200;
-            //}
-            //catch (Exception)
-            //{
-            //    conn.Close();
-            //    return 200;
-            //}
-
-
-            SqlCommand insert;
-
-            if (pepperOrShop == 0)
-            {
-                insert = new SqlCommand("insert into Peppers values(@id, @name);", conn);
-            }
-            else
-            {
-                insert = new SqlCommand("insert into PepperShops values(@id, @name);", conn);
-            }
+            SqlCommand insert = new SqlCommand("insert into Peppers values(@id, @name);", conn);
 
             insert.Parameters.AddWithValue("@id", model.ID);
             insert.Parameters.AddWithValue("@name", model.Name);
@@ -96,7 +46,7 @@ namespace Repository
             {
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.InsertCommand = insert;
-                dataAdapter.InsertCommand.ExecuteNonQuery();
+                await dataAdapter.InsertCommand.ExecuteNonQueryAsync();
                                        
                 conn.Close();
 
@@ -109,19 +59,10 @@ namespace Repository
             }
         }
 
-        public async Task<List<PepperModel>> ShowPepperOrShopAsync(int pepperOrShop)
+        public async Task<List<PepperModel>> GetAllPeppersAsync()
         {
-            SqlCommand show;
+            SqlCommand show = new SqlCommand("select * from Peppers;", conn);
             List<PepperModel> peppers = new List<PepperModel>();
-            
-            if (pepperOrShop == 0)
-            {
-                show = new SqlCommand("select * from Peppers;", conn);
-            }
-            else
-            {
-                show = new SqlCommand("select * from PepperShops", conn);
-            }
 
             conn.Open();
             SqlDataReader reader = await show.ExecuteReaderAsync();
@@ -157,18 +98,9 @@ namespace Repository
             }
         }
 
-        public int UpdatePepperOrShop(PepperModel model, int pepperOrShop)
+        public async Task<int> UpdatePepperAsync(PepperModel model)
         {
-            SqlCommand update;
-
-            if (pepperOrShop == 0)
-            {
-                update = new SqlCommand("update Peppers set PepperName = @name where PepperID = @id;", conn);
-            }
-            else
-            {
-                update = new SqlCommand("update PepperShops set ShopName = @name where ShopID = @id;", conn);
-            }
+            SqlCommand update = new SqlCommand("update Peppers set PepperName = @name where PepperID = @id;", conn); ;
 
             update.Parameters.AddWithValue("@id", model.ID);
             update.Parameters.AddWithValue("@name", model.Name);
@@ -177,7 +109,7 @@ namespace Repository
 
             try
             {
-                update.ExecuteNonQuery();
+                await update.ExecuteNonQueryAsync();
                 conn.Close();
                 return 200;
             }

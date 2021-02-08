@@ -13,29 +13,29 @@ namespace Service
     public class PepperService: IPepperService
     {
         protected IPepperRepository Repository { get; set; } 
-        public PepperService()
+        public PepperService(IPepperRepository pepperRepository)
         {
-            Repository = new PepperRepository();
+            Repository = pepperRepository;
         }
 
-        public string SavePepperOrShop(PepperModel model, int pepperOrShop)
+        public async Task<string> SavePepperAsync(PepperModel model)
         {
-            return Repository.SavePepperOrShop(model, pepperOrShop);
+            return await Repository.SavePepperAsync(model);
         }
 
-        public async Task<List<PepperModel>> GetPepperOrShopDomainModelAsync(int pepperOrShop)
+        public async Task<List<PepperModel>> GetAllPeppersAsync()
         {
-            return await Repository.ShowPepperOrShopAsync(pepperOrShop);
+            return await Repository.GetAllPeppersAsync();
         }
 
-        public int UpdatePepperOrShop(PepperModel model, int pepperOrShop)
+        public async Task<int> UpdatePepperAsync(PepperModel model)
         {
-            return Repository.UpdatePepperOrShop(model, pepperOrShop);
+            return await Repository.UpdatePepperAsync(model);
         }
 
-        public int DeletePepperOrShop(int id, int pepperOrShop)
+        public async Task<int> DeletePepperAsync(int id)
         {
-            return Repository.DeletePepperOrShop(id, pepperOrShop);
+            return await Repository.DeletePepperAsync(id);
         }
     }
 }

@@ -17,12 +17,17 @@ namespace day2.Controller
 {
     public class PepperController : ApiController
     {
-        protected IPepperService service = new PepperService();
-                
-        [HttpPost]
-        public HttpResponseMessage SavePepperOrShop(PepperModel model, int pepperOrShop)
+        protected IPepperService _service;
+
+        public PepperController(IPepperService service)
         {
-            string response = service.SavePepperOrShop(model, pepperOrShop);
+            _service = service;
+        }
+
+        [HttpPost]
+        public async Task<HttpResponseMessage> SavePepperAsync(PepperModel model)
+        {
+            string response = await _service.SavePepperAsync(model);
             
             if(response == "Ok")
             {
@@ -35,11 +40,11 @@ namespace day2.Controller
                 
         [Route("show/{id}")]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetAllPeppersOrShopsAsync(int pepperOrShop)
+        public async Task<HttpResponseMessage> GetAllPeppersAsync()
         {
             List<PepperViewModel> viewModel = new List<PepperViewModel>();
                      
-            List<PepperModel> response = await service.GetPepperOrShopDomainModelAsync(pepperOrShop);
+            List<PepperModel> response = await _service.GetAllPeppersAsync();
             
             foreach(PepperModel model in response)
             {
@@ -58,9 +63,9 @@ namespace day2.Controller
 
         [Route("update/{id}/{name}")]
         [HttpPut]
-        public HttpResponseMessage UpdatePepperOrShop(PepperModel model, int pepperOrShop)
+        public async Task<HttpResponseMessage> UpdatePepperAsync(PepperModel model)
         {
-            int response = service.UpdatePepperOrShop(model, pepperOrShop);
+            int response = await _service.UpdatePepperAsync(model);
 
             if (response == 200)
             {
@@ -74,9 +79,9 @@ namespace day2.Controller
 
         [Route("delete/{id}/{option}")]
         [HttpDelete]
-        public HttpResponseMessage DeletePepperOrShop([FromUri]int id, [FromUri]int pepperOrShop)
+        public async Task<HttpResponseMessage> DeletePepperAsync([FromUri]int id)
         {
-            int response = service.DeletePepperOrShop(id, pepperOrShop);
+            int response = await _service.DeletePepperAsync(id);
 
             if (response == 200)
             {
