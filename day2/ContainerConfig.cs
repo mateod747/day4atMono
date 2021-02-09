@@ -12,6 +12,7 @@ using System.Web.Http;
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using day2.Controller;
+using Modules;
 
 namespace Container
 {
@@ -21,10 +22,10 @@ namespace Container
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<PepperService>().As<IPepperService>();
-            builder.RegisterType<PepperRepository>().As<IPepperRepository>();
+            builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<RepositoryModule>();
 
-            //var config = new HttpConfiguration();   -- iz nekof razloga s Http konfiguracijom ne radi?
+            //var config = new HttpConfiguration();   -- iz nekog razloga s Http konfiguracijom ne radi?
             builder.RegisterType<PepperController>().InstancePerRequest();
             var container = builder.Build();
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
