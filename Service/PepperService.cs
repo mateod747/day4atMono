@@ -12,7 +12,8 @@ namespace Service
 {
     public class PepperService: IPepperService
     {
-        protected IPepperRepository Repository { get; set; } 
+        protected IPepperRepository Repository { get; set; }
+
         public PepperService(IPepperRepository pepperRepository)
         {
             Repository = pepperRepository;

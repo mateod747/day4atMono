@@ -13,12 +13,12 @@ using Model;
 using ViewModel;
 using System.Threading.Tasks;
 
+
 namespace day2.Controller
 {
     public class PepperController : ApiController
     {
         protected IPepperService _service;
-
         public PepperController(IPepperService service)
         {
             _service = service;

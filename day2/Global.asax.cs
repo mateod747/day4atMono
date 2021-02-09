@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Security;
 using System.Web.SessionState;
+using Container;
+using Service.Common;
+using Autofac;
 
 namespace day2.Configuration
 {
@@ -15,6 +18,13 @@ namespace day2.Configuration
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebAPIConfig.Register);
+
+            var container = ContainerConfig.Configure();
+
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var app = scope.Resolve<IPepperService>();
+            }
         }
 
         protected void Session_Start(object sender, EventArgs e)
