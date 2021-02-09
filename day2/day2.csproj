@@ -118,8 +118,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Configuration\WebAPIConfig.cs" />
-    <Compile Include="Modules\RepositoryModule.cs" />
-    <Compile Include="Modules\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

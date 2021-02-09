@@ -12,7 +12,6 @@ using System.Web.Http;
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using day2.Controller;
-using Modules;
 
 namespace Container
 {
